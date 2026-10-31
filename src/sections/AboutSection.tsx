@@ -3,7 +3,7 @@ import { aboutCopy } from "../data/content";
 
 export function AboutSection() {
   return (
-    <section id="about" className="tile bg-white">
+    <section id="about" className="tile">
       <div className="mx-auto max-w-[980px] text-center">
         <h2
           className="font-display text-[40px] font-semibold leading-[1.1] text-ink"

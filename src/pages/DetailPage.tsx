@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { LiveProjectButton } from "../components/LiveProjectButton";
-import { SiteNav } from "../components/SiteNav";
-import { SiteFooter } from "../components/SiteFooter";
+import { PageShell } from "../components/PageShell";
+import { ScrollFade } from "../components/ScrollFade";
 import { projectDetails } from "../data/details";
 
 export function DetailPage({ section }: { section: "research" | "products" }) {
@@ -13,22 +13,19 @@ export function DetailPage({ section }: { section: "research" | "products" }) {
 
   if (!detail || !matchesSection) {
     return (
-      <div className="min-h-screen bg-white text-ink">
-        <SiteNav />
-        <main className="tile">
+      <PageShell>
+        <section className="tile">
           <h1 className="font-display text-[40px] font-semibold">Not found</h1>
           <Link to="/" className="text-link mt-6 inline-block">
             Back home
           </Link>
-        </main>
-      </div>
+        </section>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white text-ink">
-      <SiteNav />
-      <main>
+    <PageShell>
         <article className="tile">
           <div className="mx-auto max-w-[980px]">
             <Link to={detail.backTo} className="text-link text-[17px]">
@@ -55,37 +52,39 @@ export function DetailPage({ section }: { section: "research" | "products" }) {
           </div>
         </article>
 
-        {detail.sections.map((block, index) => (
-          <section key={block.heading} className={`tile ${index % 2 === 0 ? "bg-parchment" : "bg-white"}`}>
-            <div className="mx-auto max-w-[980px]">
-              <h2 className="text-[17px] font-semibold leading-[1.24] tracking-[-0.374px]">{block.heading}</h2>
-              <div className="mt-4 max-w-[720px] space-y-4">
-                {block.paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 48)} className="text-[17px] font-normal leading-[1.47] tracking-[-0.374px]">
-                    {paragraph}
-                  </p>
-                ))}
+        {detail.sections.map((block) => (
+          <ScrollFade key={block.heading}>
+            <section className="tile">
+              <div className="mx-auto max-w-[980px]">
+                <h2 className="text-[17px] font-semibold leading-[1.24] tracking-[-0.374px]">{block.heading}</h2>
+                <div className="mt-4 max-w-[720px] space-y-4">
+                  {block.paragraphs.map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)} className="text-[17px] font-normal leading-[1.47] tracking-[-0.374px]">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </ScrollFade>
         ))}
 
         {detail.figures.length > 0 ? (
-          <section className="tile bg-parchment">
+          <section className="tile">
             <div className="mx-auto flex max-w-[980px] flex-col gap-6">
               {detail.figures.map((figure) => (
-                <figure key={figure.src} className="overflow-hidden rounded-[18px] border border-hairline bg-white">
-                  <img src={figure.src} alt={figure.alt} className="h-auto w-full" />
-                  <figcaption className="px-6 py-4 text-[14px] leading-[1.43] tracking-[-0.224px] text-[#333333]">
-                    {figure.caption}
-                  </figcaption>
-                </figure>
+                <ScrollFade key={figure.src}>
+                  <figure className="overflow-hidden rounded-[18px] border border-hairline bg-white">
+                    <img src={figure.src} alt={figure.alt} className="h-auto w-full" />
+                    <figcaption className="px-6 py-4 text-[14px] leading-[1.43] tracking-[-0.224px] text-[#333333]">
+                      {figure.caption}
+                    </figcaption>
+                  </figure>
+                </ScrollFade>
               ))}
             </div>
           </section>
         ) : null}
-      </main>
-      <SiteFooter />
-    </div>
+    </PageShell>
   );
 }

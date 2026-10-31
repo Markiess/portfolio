@@ -22,9 +22,10 @@ Import the repository on Vercel. `vercel.json` rewrites unknown paths to `index.
 
 Project pages:
 
-- `/research/llm-safety`
-- `/research/clickbait`
-- `/products/bitebite`
+- `/about`
+- `/experience`
+- `/research` and `/research/llm-safety`, `/research/clickbait`
+- `/products` and `/products/bitebite`
 
 - Build command: `npm run build`
 - Output directory: `dist`
