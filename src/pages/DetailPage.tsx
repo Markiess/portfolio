@@ -1,100 +1,91 @@
-import { ArrowLeft } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { FadeIn } from "../components/FadeIn";
 import { LiveProjectButton } from "../components/LiveProjectButton";
 import { SiteNav } from "../components/SiteNav";
+import { SiteFooter } from "../components/SiteFooter";
 import { projectDetails } from "../data/details";
 
 export function DetailPage({ section }: { section: "research" | "products" }) {
   const { slug } = useParams();
   const detail = slug ? projectDetails[slug] : undefined;
-  const expectedSection = section === "research" ? "research" : "products";
   const matchesSection =
-    (expectedSection === "research" && (slug === "llm-safety" || slug === "clickbait")) ||
-    (expectedSection === "products" && slug === "bitebite");
+    (section === "research" && (slug === "llm-safety" || slug === "clickbait")) ||
+    (section === "products" && slug === "bitebite");
 
   if (!detail || !matchesSection) {
     return (
-      <main className="min-h-screen bg-[#0C0C0C] text-[#D7E2EA]">
+      <div className="min-h-screen bg-white text-ink">
         <SiteNav />
-        <div className="px-6 py-24 md:px-10">
-          <h1 className="hero-heading font-black uppercase" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
-            Not found
-          </h1>
-          <Link to="/" className="mt-8 inline-block uppercase tracking-widest text-[#D7E2EA]">
+        <main className="tile">
+          <h1 className="font-display text-[40px] font-semibold">Not found</h1>
+          <Link to="/" className="text-link mt-6 inline-block">
             Back home
           </Link>
-        </div>
-      </main>
+        </main>
+      </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#0C0C0C] text-[#D7E2EA]" style={{ overflowX: "clip" }}>
+    <div className="min-h-screen bg-white text-ink">
       <SiteNav />
-      <article className="mx-auto max-w-5xl px-5 pb-24 pt-10 sm:px-8 md:px-10">
-        <FadeIn y={20}>
-          <Link
-            to={detail.backTo}
-            className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-[#D7E2EA] no-underline transition-opacity duration-200 hover:opacity-70"
-          >
-            <ArrowLeft size={16} aria-hidden="true" />
-            {detail.backLabel}
-          </Link>
-        </FadeIn>
-        <FadeIn delay={0.08} y={24}>
-          <p className="mt-8 text-xs font-light uppercase tracking-widest opacity-70 sm:text-sm">
-            {detail.kicker}
-          </p>
-          <h1
-            className="hero-heading mt-3 font-black uppercase leading-tight tracking-tight"
-            style={{ fontSize: "clamp(1.7rem, 4.4vw, 3.4rem)" }}
-          >
-            {detail.title}
-          </h1>
-          <p className="mt-4 max-w-3xl font-medium leading-relaxed" style={{ fontSize: "clamp(1rem, 1.6vw, 1.25rem)" }}>
-            {detail.authors}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {detail.paperHref ? (
-              <LiveProjectButton href={detail.paperHref} label="Read Paper" />
-            ) : null}
-            {detail.externalHref && detail.externalLabel ? (
-              <LiveProjectButton href={detail.externalHref} label={detail.externalLabel} />
-            ) : null}
+      <main>
+        <article className="tile">
+          <div className="mx-auto max-w-[980px]">
+            <Link to={detail.backTo} className="text-link text-[17px]">
+              {detail.backLabel}
+            </Link>
+            <p className="mt-8 text-[14px] tracking-[-0.224px] text-[#7a7a7a]">{detail.kicker}</p>
+            <h1
+              className="mt-3 font-display font-semibold text-ink"
+              style={{
+                fontSize: "clamp(28px, 4vw, 40px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.28px",
+              }}
+            >
+              {detail.title}
+            </h1>
+            <p className="mt-4 max-w-[720px] text-[17px] leading-[1.47] tracking-[-0.374px]">{detail.authors}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {detail.paperHref ? <LiveProjectButton href={detail.paperHref} label="Read Paper" /> : null}
+              {detail.externalHref && detail.externalLabel ? (
+                <LiveProjectButton href={detail.externalHref} label={detail.externalLabel} variant="secondary" />
+              ) : null}
+            </div>
           </div>
-        </FadeIn>
+        </article>
 
         {detail.sections.map((block, index) => (
-          <FadeIn key={block.heading} delay={0.05 * index} y={24} className="mt-12 border-t border-[#D7E2EA]/15 pt-8">
-            <h2 className="font-medium uppercase tracking-widest" style={{ fontSize: "clamp(1rem, 2vw, 1.4rem)" }}>
-              {block.heading}
-            </h2>
-            <div className="mt-4 max-w-3xl space-y-4">
-              {block.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)} className="font-light leading-relaxed opacity-80" style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)" }}>
-                  {paragraph}
-                </p>
-              ))}
+          <section key={block.heading} className={`tile ${index % 2 === 0 ? "bg-parchment" : "bg-white"}`}>
+            <div className="mx-auto max-w-[980px]">
+              <h2 className="text-[17px] font-semibold leading-[1.24] tracking-[-0.374px]">{block.heading}</h2>
+              <div className="mt-4 max-w-[720px] space-y-4">
+                {block.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)} className="text-[17px] font-normal leading-[1.47] tracking-[-0.374px]">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
-          </FadeIn>
+          </section>
         ))}
 
         {detail.figures.length > 0 ? (
-          <div className="mt-14 flex flex-col gap-10">
-            {detail.figures.map((figure, index) => (
-              <FadeIn key={figure.src} delay={0.04 * index} y={20}>
-                <figure className="overflow-hidden rounded-[40px] border-2 border-[#D7E2EA] bg-white sm:rounded-[50px]">
+          <section className="tile bg-parchment">
+            <div className="mx-auto flex max-w-[980px] flex-col gap-6">
+              {detail.figures.map((figure) => (
+                <figure key={figure.src} className="overflow-hidden rounded-[18px] border border-hairline bg-white">
                   <img src={figure.src} alt={figure.alt} className="h-auto w-full" />
-                  <figcaption className="bg-[#0C0C0C] px-5 py-4 font-light leading-relaxed text-[#D7E2EA] opacity-80 sm:px-6">
+                  <figcaption className="px-6 py-4 text-[14px] leading-[1.43] tracking-[-0.224px] text-[#333333]">
                     {figure.caption}
                   </figcaption>
                 </figure>
-              </FadeIn>
-            ))}
-          </div>
+              ))}
+            </div>
+          </section>
         ) : null}
-      </article>
-    </main>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

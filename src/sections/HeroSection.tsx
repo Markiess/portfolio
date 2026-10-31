@@ -1,55 +1,39 @@
+import { Link } from "react-router-dom";
 import { ContactButton } from "../components/ContactButton";
-import { FadeIn } from "../components/FadeIn";
-import { Magnet } from "../components/Magnet";
-import { SiteNav } from "../components/SiteNav";
 import { heroTagline, portraitSrc } from "../data/content";
 
 export function HeroSection() {
   return (
-    <section className="relative flex h-screen flex-col overflow-x-clip">
-      <FadeIn delay={0} y={-20} className="relative z-20">
-        <SiteNav className="flex justify-between px-6 pt-6 md:px-10 md:pt-8" />
-      </FadeIn>
-
-      <FadeIn delay={0.15} y={40} className="relative z-20">
-        <div className="overflow-hidden">
-          <h1 className="hero-heading mt-6 w-full whitespace-nowrap font-black uppercase leading-none tracking-tight text-[14vw] sm:mt-4 sm:text-[14.4vw] md:-mt-5 md:text-[14.4vw] lg:text-[14.4vw]">
-            Hi, i'm Qikang
-          </h1>
-        </div>
-      </FadeIn>
-
-      <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:top-auto sm:bottom-0 sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]">
-        <div className="pointer-events-auto">
-          <FadeIn delay={0.6} y={30}>
-            <Magnet
-              padding={150}
-              strength={3}
-              activeTransition="transform 0.3s ease-out"
-              inactiveTransition="transform 0.6s ease-in-out"
-            >
-              <img
-                src={portraitSrc}
-                alt="Portrait of Qikang Yan"
-                className="h-auto w-full"
-              />
-            </Magnet>
-          </FadeIn>
-        </div>
-      </div>
-
-      <div className="relative z-20 mt-auto flex items-end justify-between px-6 pb-7 sm:pb-8 md:px-10 md:pb-10">
-        <FadeIn delay={0.35} y={20}>
-          <p
-            className="max-w-[160px] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[220px] md:max-w-[260px]"
-            style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}
-          >
-            {heroTagline}
-          </p>
-        </FadeIn>
-        <FadeIn delay={0.5} y={20}>
+    <section className="tile bg-white text-center">
+      <div className="mx-auto flex max-w-[980px] flex-col items-center">
+        <h1
+          className="font-display font-semibold text-ink"
+          style={{
+            fontSize: "clamp(28px, 5vw, 56px)",
+            lineHeight: 1.07,
+            letterSpacing: "-0.28px",
+          }}
+        >
+          Hi, i'm Qikang
+        </h1>
+        <p
+          className="mt-4 max-w-[640px] font-display text-ink"
+          style={{ fontSize: "21px", fontWeight: 600, lineHeight: 1.19, letterSpacing: "0.231px" }}
+        >
+          {heroTagline}
+        </p>
+        <img
+          src={portraitSrc}
+          alt="Portrait of Qikang Yan"
+          className="mt-12 h-auto w-[min(420px,80%)]"
+          style={{ boxShadow: "3px 5px 30px rgba(0, 0, 0, 0.22)" }}
+        />
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           <ContactButton />
-        </FadeIn>
+          <Link to="/#research" className="btn-secondary">
+            Research
+          </Link>
+        </div>
       </div>
     </section>
   );
