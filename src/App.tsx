@@ -1,8 +1,9 @@
 import { AboutSection } from "./sections/AboutSection";
+import { ExperienceSection } from "./sections/ExperienceSection";
 import { HeroSection } from "./sections/HeroSection";
 import { MarqueeSection } from "./sections/MarqueeSection";
-import { ProjectsSection } from "./sections/ProjectsSection";
-import { ServicesSection } from "./sections/ServicesSection";
+import { StackSection } from "./sections/StackSection";
+import { products, research } from "./data/content";
 
 export default function App() {
   return (
@@ -10,8 +11,9 @@ export default function App() {
       <HeroSection />
       <MarqueeSection />
       <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
+      <ExperienceSection />
+      <StackSection id="research" title="Research" items={research} overlap />
+      <StackSection id="products" title="Products" items={products} />
     </main>
   );
 }
