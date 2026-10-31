@@ -1,6 +1,6 @@
 # Qikang Yan — Portfolio
 
-Landing page for a 3D creator portfolio. Vite, React 18, TypeScript, Tailwind CSS 3.4, Framer Motion, and Lucide React.
+Landing page for Qikang Yan, a computer science and AI student. Vite, React 18, TypeScript, Tailwind CSS 3.4, Framer Motion, and Lucide React.
 
 ## Develop
 

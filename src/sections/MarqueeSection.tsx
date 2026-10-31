@@ -1,14 +1,17 @@
 import { useEffect, useRef } from "react";
-import { marqueeGifs } from "../data/content";
+import { marqueeRowOne, marqueeRowTwo } from "../data/content";
 
 function triple(items: readonly string[]) {
   return [...items, ...items, ...items];
 }
 
+const chipClass =
+  "inline-flex h-[72px] shrink-0 items-center rounded-2xl border border-[#D7E2EA]/30 px-8 text-sm font-medium uppercase tracking-widest text-[#D7E2EA] sm:h-[96px] sm:px-10 sm:text-base md:h-[112px] md:text-lg";
+
 export function MarqueeSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
+  const row1Ref = useRef<HTMLUListElement>(null);
+  const row2Ref = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -32,41 +35,30 @@ export function MarqueeSection() {
     };
   }, []);
 
-  const row1 = triple(marqueeGifs.slice(0, 11));
-  const row2 = triple(marqueeGifs.slice(11));
+  const row1 = triple(marqueeRowOne);
+  const row2 = triple(marqueeRowTwo);
 
   return (
     <section
       ref={sectionRef}
       className="overflow-x-clip bg-[#0C0C0C] pb-10 pt-24 sm:pt-32 md:pt-40"
+      aria-label="Skills and research keywords"
     >
       <div className="flex flex-col gap-3">
-        <div ref={row1Ref} className="flex w-max gap-3 will-change-transform">
-          {row1.map((src, index) => (
-            <img
-              key={`row1-${index}`}
-              src={src}
-              alt=""
-              width={420}
-              height={270}
-              loading="lazy"
-              className="h-[270px] w-[420px] shrink-0 rounded-2xl object-cover"
-            />
+        <ul ref={row1Ref} className="flex w-max list-none gap-3 will-change-transform">
+          {row1.map((label, index) => (
+            <li key={`row1-${label}-${index}`} className={chipClass}>
+              {label}
+            </li>
           ))}
-        </div>
-        <div ref={row2Ref} className="flex w-max gap-3 will-change-transform">
-          {row2.map((src, index) => (
-            <img
-              key={`row2-${index}`}
-              src={src}
-              alt=""
-              width={420}
-              height={270}
-              loading="lazy"
-              className="h-[270px] w-[420px] shrink-0 rounded-2xl object-cover"
-            />
+        </ul>
+        <ul ref={row2Ref} className="flex w-max list-none gap-3 will-change-transform">
+          {row2.map((label, index) => (
+            <li key={`row2-${label}-${index}`} className={chipClass}>
+              {label}
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

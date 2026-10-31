@@ -1,102 +1,173 @@
-export const marqueeGifs = [
-  "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
-  "https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif",
-  "https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif",
-  "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
-  "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
-  "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif",
-  "https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif",
-  "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
-  "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
-  "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
-  "https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif",
-  "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif",
-  "https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif",
-  "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
-  "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
-  "https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif",
-  "https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif",
-  "https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif",
-  "https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif",
-  "https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif",
-  "https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif",
+export const githubProfile = "https://github.com/Markiess";
+
+export const marqueeRowOne = [
+  "Python",
+  "Java",
+  "C",
+  "JavaScript",
+  "SQL",
+  "MATLAB",
+  "PyTorch",
+  "Pandas",
+  "Node.js",
+  "React Native",
+  "vLLM",
 ] as const;
 
-export const services = [
+export const marqueeRowTwo = [
+  "LLM Safety",
+  "Knowledge Distillation",
+  "HarmBench",
+  "DistilBERT",
+  "Machine Learning",
+  "NLP",
+  "Multimodal",
+  "Curiosity",
+  "Teaching",
+  "Cursor",
+  "Claude Code",
+] as const;
+
+export const experience = [
   {
     number: "01",
-    name: "3D Modeling",
+    name: "Edinburgh",
     description:
-      "Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.",
+      "BSc Computer Science, September 2023–June 2027. Ranked 1st in year 1. Courses include Data Structures & Algorithms, Intelligent Agents & Reasoning, and Machine Learning.",
   },
   {
     number: "02",
-    name: "Rendering",
+    name: "UPenn",
     description:
-      "High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.",
+      "Exchange, August 2025–June 2026, across AI, NLP, numerical optimization, and big data. Fall 2025 GPA 4.0.",
   },
   {
     number: "03",
-    name: "Motion Design",
+    name: "Inspur",
     description:
-      "Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.",
+      "AI Manufacturing Intern, June–August 2024. Labeled and organized computer-vision datasets for industrial monitoring, self-studied Transformers, CNNs, and decision trees, and recorded experimental observations.",
   },
   {
     number: "04",
-    name: "Branding",
+    name: "New Oriental",
     description:
-      "Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence.",
-  },
-  {
-    number: "05",
-    name: "Web Design",
-    description:
-      "Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.",
+      "Teaching assistant, June–August 2023. Tutored computer science, mathematics, and physics for an international program.",
   },
 ] as const;
 
-export type Project = {
-  number: string;
-  name: string;
-  category: string;
-  images: readonly [string, string, string];
+export type MetricPanel = {
+  kicker: string;
+  value: string;
+  note: string;
+  gradient: string;
 };
 
-export const projects: readonly Project[] = [
+export type WorkItem = {
+  number: string;
+  category: string;
+  name: string;
+  summary: string;
+  href?: string;
+  linkLabel?: string;
+  leftTop: MetricPanel;
+  leftBottom: MetricPanel;
+  feature: MetricPanel;
+  diagram: "safety" | "distill" | "bitebite";
+};
+
+export const research: readonly WorkItem[] = [
   {
     number: "01",
-    name: "Nextlevel Studio",
-    category: "Client",
-    images: [
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85",
-    ],
+    category: "GEPA · STAT 4830",
+    name: "Co-Evolving Prompt Defenses",
+    summary:
+      "With Ren, Sarina, and Shiv, January–May 2026. A policy-gradient adversary rewrites harmful prompts and a reflection-based defender rewrites the system prompt, without changing Llama-3.1-8B-Instruct weights. Evaluated on HarmBench through local vLLM.",
+    leftTop: {
+      kicker: "HarmBench ASR",
+      value: "0.42",
+      note: "Before co-evolution",
+      gradient: "linear-gradient(160deg, #2a1238 0%, #0C0C0C 70%)",
+    },
+    leftBottom: {
+      kicker: "HarmBench ASR",
+      value: "0.06",
+      note: "After four stages",
+      gradient: "linear-gradient(200deg, #3a1848 0%, #18011F 55%, #0C0C0C 100%)",
+    },
+    feature: {
+      kicker: "Llama-3.1-8B-Instruct",
+      value: "0.79 → 0.90",
+      note: "Refusal rate. Unsafe compliance 0.37 → 0.29.",
+      gradient: "linear-gradient(145deg, #18011F 0%, #7621B0 48%, #0C0C0C 100%)",
+    },
+    diagram: "safety",
   },
   {
     number: "02",
-    name: "Aura Brand Identity",
-    category: "Personal",
-    images: [
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85",
-    ],
+    category: "UPenn",
+    name: "Clickbait detection via multi-source distillation",
+    summary:
+      "With Carrie Li, Minyu Deng, and Zhiyuan Li, September–December 2025. An SFT GPT-4o-mini teacher distills into DistilBERT with a Triad loss and soft labels from the model and from people. Webis Clickbait: 21,439 tweets, class ratio 1:3.1. Weight rebalancing and temperature T=2.",
+    href: "https://github.com/Markiess/clickbait-detector",
+    linkLabel: "GitHub",
+    leftTop: {
+      kicker: "Test accuracy",
+      value: "80.09%",
+      note: "Above a BERT-base baseline, at lower inference cost",
+      gradient: "linear-gradient(165deg, #1c2430 0%, #0C0C0C 72%)",
+    },
+    leftBottom: {
+      kicker: "Student model",
+      value: "66M",
+      note: "DistilBERT parameters",
+      gradient: "linear-gradient(190deg, #243044 0%, #0C0C0C 100%)",
+    },
+    feature: {
+      kicker: "Teacher → student",
+      value: "T = 2",
+      note: "GPT-4o-mini, Triad loss, Webis Clickbait",
+      gradient: "linear-gradient(150deg, #121820 0%, #2a4560 42%, #0C0C0C 100%)",
+    },
+    diagram: "distill",
   },
+];
+
+export const products: readonly WorkItem[] = [
   {
-    number: "03",
-    name: "Solaris Digital",
-    category: "Client",
-    images: [
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85",
-    ],
+    number: "01",
+    category: "App Store",
+    name: "BiteBite",
+    summary:
+      "BiteBite Analyze & Track, on the App Store since November 2025, version 2.1.1. React Native and Node.js. GPT-4o Vision estimates calories and macros, and people can correct the result. No model was trained in-house.",
+    href: "https://download.nutrisnap.live",
+    linkLabel: "Download",
+    leftTop: {
+      kicker: "Stack",
+      value: "React Native",
+      note: "Node.js",
+      gradient: "linear-gradient(160deg, #2a1810 0%, #0C0C0C 75%)",
+    },
+    leftBottom: {
+      kicker: "Current version",
+      value: "2.1.1",
+      note: "BiteBite Analyze & Track",
+      gradient: "linear-gradient(200deg, #4a2414 0%, #18011F 60%, #0C0C0C 100%)",
+    },
+    feature: {
+      kicker: "Estimate, then correct",
+      value: "TDEE",
+      note: "Mifflin–St Jeor. Meal plans can be revised in natural language, and the model can switch by region.",
+      gradient: "linear-gradient(145deg, #18011F 0%, #B600A8 38%, #BE4C00 78%, #0C0C0C 100%)",
+    },
+    diagram: "bitebite",
   },
 ];
 
 export const aboutCopy =
-  "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
+  "I am a computer science student at the University of Edinburgh, BSc from September 2023 to June 2027, and I ranked 1st in year 1. I was an exchange student at the University of Pennsylvania from August 2025 to June 2026, with a 4.0 GPA in fall 2025. My interests are how language models learn, curiosity, and teaching, including safety alignment, knowledge distillation, and multimodal applications.";
+
+export const heroTagline =
+  "a cs & ai student exploring how language models learn, stay safe, and teach";
 
 export const portraitSrc =
   "https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png";
