@@ -67,8 +67,10 @@ export type WorkItem = {
   category: string;
   name: string;
   summary: string;
+  slug: string;
   href?: string;
   linkLabel?: string;
+  paperHref?: string;
   leftTop: MetricPanel;
   leftBottom: MetricPanel;
   feature: MetricPanel;
@@ -78,10 +80,12 @@ export type WorkItem = {
 export const research: readonly WorkItem[] = [
   {
     number: "01",
-    category: "GEPA · STAT 4830",
-    name: "Co-Evolving Prompt Defenses",
+    category: "Ren, Sarina, Shiv, and Mark",
+    name: "Co-Evolving Prompt Defenses: Policy-Gradient Adversaries and Reflection-Based Optimization for LLM Safety",
+    slug: "llm-safety",
     summary:
-      "With Ren, Sarina, and Shiv, January–May 2026. A policy-gradient adversary rewrites harmful prompts and a reflection-based defender rewrites the system prompt, without changing Llama-3.1-8B-Instruct weights. Evaluated on HarmBench through local vLLM.",
+      "A frozen Llama-3.1-8B-Instruct is defended by evolving its system prompt while a policy-gradient adversary rewrites harmful requests. HarmBench ASR falls from 0.42 to 0.06.",
+    paperHref: "/papers/co-evolving-prompt-defenses.pdf",
     leftTop: {
       kicker: "HarmBench ASR",
       value: "0.42",
@@ -95,21 +99,23 @@ export const research: readonly WorkItem[] = [
       gradient: "linear-gradient(200deg, #3a1848 0%, #18011F 55%, #0C0C0C 100%)",
     },
     feature: {
-      kicker: "Llama-3.1-8B-Instruct",
-      value: "0.79 → 0.90",
-      note: "Refusal rate. Unsafe compliance 0.37 → 0.29.",
+      kicker: "RLOO + length penalty",
+      value: "0.52",
+      note: "Peak HarmBench ASR with a 2262-character seed. Naive REINFORCE peaks at 0.24.",
       gradient: "linear-gradient(145deg, #18011F 0%, #7621B0 48%, #0C0C0C 100%)",
     },
     diagram: "safety",
   },
   {
     number: "02",
-    category: "UPenn",
-    name: "Clickbait detection via multi-source distillation",
+    category: "Carrie Li, Mark Yan, Minyu Deng, Zhiyuan Li",
+    name: "Enhancing Digital Media Integrity: A Natural Language Processing Model for Clickbait Detection and Mitigation",
+    slug: "clickbait",
     summary:
-      "With Carrie Li, Minyu Deng, and Zhiyuan Li, September–December 2025. An SFT GPT-4o-mini teacher distills into DistilBERT with a Triad loss and soft labels from the model and from people. Webis Clickbait: 21,439 tweets, class ratio 1:3.1. Weight rebalancing and temperature T=2.",
+      "GPT-4o-mini soft labels are distilled into a 66M DistilBERT. On the cleaned Webis Clickbait test set, accuracy is 0.8009.",
     href: "https://github.com/Markiess/clickbait-detector",
     linkLabel: "GitHub",
+    paperHref: "/papers/clickbait-detection.pdf",
     leftTop: {
       kicker: "Test accuracy",
       value: "80.09%",
@@ -123,9 +129,9 @@ export const research: readonly WorkItem[] = [
       gradient: "linear-gradient(190deg, #243044 0%, #0C0C0C 100%)",
     },
     feature: {
-      kicker: "Teacher → student",
-      value: "T = 2",
-      note: "GPT-4o-mini, Triad loss, Webis Clickbait",
+      kicker: "Soft-label weight",
+      value: "0.25",
+      note: "alpha = 0.25 on GPT-4o-mini soft labels, plus hard labels",
       gradient: "linear-gradient(150deg, #121820 0%, #2a4560 42%, #0C0C0C 100%)",
     },
     diagram: "distill",
@@ -137,6 +143,7 @@ export const products: readonly WorkItem[] = [
     number: "01",
     category: "App Store",
     name: "BiteBite",
+    slug: "bitebite",
     summary:
       "BiteBite Analyze & Track, on the App Store since November 2025, version 2.1.1. React Native and Node.js. GPT-4o Vision estimates calories and macros, and people can correct the result. No model was trained in-house.",
     href: "https://download.nutrisnap.live",

@@ -18,7 +18,13 @@ npm run preview
 
 ## Deploy
 
-Import the repository on Vercel and keep the default Vite static-site settings.
+Import the repository on Vercel. `vercel.json` rewrites unknown paths to `index.html` so the research and product pages work on refresh.
+
+Project pages:
+
+- `/research/llm-safety`
+- `/research/clickbait`
+- `/products/bitebite`
 
 - Build command: `npm run build`
 - Output directory: `dist`
