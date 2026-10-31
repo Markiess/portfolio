@@ -1,30 +1,14 @@
 import { ContactButton } from "../components/ContactButton";
 import { FadeIn } from "../components/FadeIn";
 import { Magnet } from "../components/Magnet";
+import { SiteNav } from "../components/SiteNav";
 import { heroTagline, portraitSrc } from "../data/content";
-
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Research", href: "#research" },
-  { label: "Products", href: "#products" },
-  { label: "Contact", href: "#contact" },
-];
 
 export function HeroSection() {
   return (
     <section className="relative flex h-screen flex-col overflow-x-clip">
       <FadeIn delay={0} y={-20} className="relative z-20">
-        <nav className="flex justify-between px-6 pt-6 md:px-10 md:pt-8">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-sm font-medium uppercase tracking-wider text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70 md:text-lg lg:text-[1.4rem]"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <SiteNav className="flex justify-between px-6 pt-6 md:px-10 md:pt-8" />
       </FadeIn>
 
       <FadeIn delay={0.15} y={40} className="relative z-20">
