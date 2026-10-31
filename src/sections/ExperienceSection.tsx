@@ -2,7 +2,7 @@ import { experience } from "../data/content";
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="tile bg-parchment">
+    <section id="experience" className="tile">
       <div className="mx-auto max-w-[980px]">
         <h2 className="text-center font-display text-[40px] font-semibold leading-[1.1] text-ink">
           Experience

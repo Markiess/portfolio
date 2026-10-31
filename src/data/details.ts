@@ -30,7 +30,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     title:
       "Co-Evolving Prompt Defenses: Policy-Gradient Adversaries and Reflection-Based Optimization for LLM Safety",
     authors: "Ren, Sarina, Shiv, and Mark",
-    backTo: "/#research",
+    backTo: "/research",
     backLabel: "Research",
     paperHref: "/papers/co-evolving-prompt-defenses.pdf",
     sections: [
@@ -108,7 +108,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     title:
       "Enhancing Digital Media Integrity: A Natural Language Processing Model for Clickbait Detection and Mitigation",
     authors: "Carrie Li, Mark Yan, Minyu Deng, and Zhiyuan Li",
-    backTo: "/#research",
+    backTo: "/research",
     backLabel: "Research",
     paperHref: "/papers/clickbait-detection.pdf",
     externalHref: "https://github.com/Markiess/clickbait-detector",
@@ -168,7 +168,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     kicker: "App Store · since November 2025 · version 2.1.1",
     title: "BiteBite",
     authors: "BiteBite Analyze & Track",
-    backTo: "/#products",
+    backTo: "/products",
     backLabel: "Products",
     externalHref: "https://download.nutrisnap.live",
     externalLabel: "Download",
