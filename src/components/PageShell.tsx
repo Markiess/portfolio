@@ -1,17 +1,16 @@
 import type { ReactNode } from "react";
-import { MeshBackground } from "./MeshBackground";
+import { ScrollProgress } from "./ScrollProgress";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 
 export function PageShell({ children }: { children: ReactNode }) {
   return (
-    <div className="relative min-h-screen bg-parchment text-ink">
-      <MeshBackground />
-      <div className="relative">
-        <SiteNav />
-        <main>{children}</main>
-        <SiteFooter />
-      </div>
+    <div className="min-h-screen bg-black text-ink">
+      <a href="#main-content" className="skip-link">Skip to content</a>
+      <ScrollProgress />
+      <SiteNav />
+      <main id="main-content">{children}</main>
+      <SiteFooter />
     </div>
   );
 }

@@ -11,6 +11,7 @@ export type DetailSection = {
 
 export type ProjectDetail = {
   slug: string;
+  section: "research" | "products";
   kicker: string;
   title: string;
   authors: string;
@@ -26,6 +27,7 @@ export type ProjectDetail = {
 export const projectDetails: Record<string, ProjectDetail> = {
   "llm-safety": {
     slug: "llm-safety",
+    section: "research",
     kicker: "STAT 4830 Final Project · University of Pennsylvania · Spring 2026",
     title:
       "Co-Evolving Prompt Defenses: Policy-Gradient Adversaries and Reflection-Based Optimization for LLM Safety",
@@ -104,6 +106,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
   },
   clickbait: {
     slug: "clickbait",
+    section: "research",
     kicker: "University of Pennsylvania",
     title:
       "Enhancing Digital Media Integrity: A Natural Language Processing Model for Clickbait Detection and Mitigation",
@@ -165,6 +168,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
   },
   bitebite: {
     slug: "bitebite",
+    section: "products",
     kicker: "App Store · since November 2025 · version 2.1.1",
     title: "BiteBite",
     authors: "BiteBite Analyze & Track",

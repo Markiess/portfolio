@@ -1,61 +1,40 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useReducedMotion } from "framer-motion";
+import { useRef, type MouseEvent, type ReactNode } from "react";
 
 type MagnetProps = {
   children: ReactNode;
   className?: string;
   padding?: number;
   strength?: number;
-  activeTransition?: string;
-  inactiveTransition?: string;
 };
 
 export function Magnet({
   children,
   className,
-  padding = 100,
-  strength = 2,
-  activeTransition = "transform 0.3s ease-out",
-  inactiveTransition = "transform 0.6s ease-in-out",
+  strength = 8,
 }: MagnetProps) {
   const boundsRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
 
-  useEffect(() => {
-    const bounds = boundsRef.current;
+  const onMove = (event: MouseEvent<HTMLDivElement>) => {
     const inner = innerRef.current;
-    if (!bounds || !inner) return;
+    if (!inner || reduce) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    inner.style.transform = `translate3d(${(event.clientX - rect.left - rect.width / 2) / strength}px, ${(event.clientY - rect.top - rect.height / 2) / strength}px, 0)`;
+  };
 
-    const onMove = (event: MouseEvent) => {
-      const rect = bounds.getBoundingClientRect();
-      const within =
-        event.clientX >= rect.left - padding &&
-        event.clientX <= rect.right + padding &&
-        event.clientY >= rect.top - padding &&
-        event.clientY <= rect.bottom + padding;
-
-      if (within) {
-        const dx = event.clientX - (rect.left + rect.width / 2);
-        const dy = event.clientY - (rect.top + rect.height / 2);
-        inner.style.transition = activeTransition;
-        inner.style.transform = `translate3d(${dx / strength}px, ${dy / strength}px, 0)`;
-        return;
-      }
-
-      inner.style.transition = inactiveTransition;
-      inner.style.transform = "translate3d(0, 0, 0)";
-    };
-
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [activeTransition, inactiveTransition, padding, strength]);
+  const reset = () => {
+    if (innerRef.current) innerRef.current.style.transform = "translate3d(0,0,0)";
+  };
 
   return (
-    <div ref={boundsRef} className={className}>
+    <div ref={boundsRef} className={className} onMouseMove={onMove} onMouseLeave={reset}>
       <div
         ref={innerRef}
         style={{
           transform: "translate3d(0, 0, 0)",
-          transition: inactiveTransition,
+          transition: "transform .55s cubic-bezier(.28,.11,.32,1)",
           willChange: "transform",
         }}
       >

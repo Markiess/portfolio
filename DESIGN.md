@@ -562,3 +562,16 @@ The structural breakpoints that matter for agents: 1440px (content lock), 1068px
 - Dark-mode counterparts for store and accessories utility cards were not surfaced on the analyzed pages; the system documented is the daytime/light-dominant variant Apple ships by default.
 - Atmospheric photography (environment page mountain vista) is a content asset, not a design token; the documented `{component.environment-quote-card}` describes the structural surface only.
 - The exact backdrop-filter blur radius on `{component.sub-nav-frosted}` and `{component.floating-sticky-bar}` is platform-dependent; production CSS uses `saturate(180%) blur(20px)` as a typical baseline but the value isn't formalized as a token.
+
+## Portfolio Dark Theme Addendum
+
+This project uses the source system above as design guidance, with a dark-first portfolio-specific layer.
+
+- Canvas: `#000000`; photographic hero canvas: `#05070a`; tiles: `#161617`, `#1d1d1f`, and `#272729`.
+- Primary text: `#f5f5f7`; secondary text: `#a1a1a6`; quiet labels: `#86868b`; action blue: `#2997ff`.
+- Borders use `rgba(255,255,255,.12)`. Shadows are avoided on interface chrome.
+- Frosted glass is reserved for navigation, modal overlays, and transient feedback where real content passes behind it. Use `rgba(22,22,23,.72)` with `saturate(180%) blur(20px)` and a subtle one-pixel border.
+- Content cards and buttons use solid or low-opacity surfaces, never decorative glass.
+- Hero photography may blend only at the edge facing content. The outer page edge remains crisp.
+- Motion communicates hierarchy: short reveals, restrained parallax, and direct manipulation feedback. All motion must provide a static `prefers-reduced-motion` mode.
+- Primary sections use 80–140px vertical spacing, a 980px content measure, and a 1440px maximum photographic canvas.

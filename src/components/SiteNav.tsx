@@ -1,24 +1,56 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { githubProfile } from "../data/content";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
-  { label: "About", href: "/about" },
-  { label: "Experience", href: "/experience" },
+  { label: "About", href: "/#about" },
   { label: "Research", href: "/research" },
   { label: "Products", href: "/products" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+    const nodes = ["about", "contact"].map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-30% 0px -60% 0px" },
+    );
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [location.pathname]);
 
   return (
-    <header className="glass-nav sticky top-0 z-50 text-ink">
-      <nav className="relative mx-auto flex h-11 max-w-[1440px] items-center px-5" aria-label="Primary">
+    <header className={`fixed inset-x-0 top-0 z-50 text-ink transition-all duration-500 ${scrolled || open ? "glass-nav" : "bg-transparent"}`}>
+      <nav className={`relative mx-auto flex max-w-[1440px] items-center px-5 transition-[height] duration-500 ${scrolled ? "h-12" : "h-14"}`} aria-label="Primary">
         <button
           type="button"
-          className="glass flex h-11 w-11 items-center justify-center rounded-full min-[834px]:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[.07] min-[834px]:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
@@ -28,7 +60,7 @@ export function SiteNav() {
         </button>
         <Link
           to="/"
-          className="absolute left-1/2 -translate-x-1/2 text-[12px] font-normal tracking-[-0.12px] text-ink no-underline min-[834px]:static min-[834px]:translate-x-0"
+          className="absolute left-1/2 -translate-x-1/2 text-[13px] font-medium tracking-[-0.01em] text-ink no-underline min-[834px]:static min-[834px]:translate-x-0"
           onClick={() => setOpen(false)}
         >
           Qikang Yan
@@ -38,47 +70,29 @@ export function SiteNav() {
             <li key={item.label}>
               <Link
                 to={item.href}
-                className="text-[12px] font-normal leading-none tracking-[-0.12px] text-ink no-underline"
+                className={`text-[13px] font-normal leading-none text-muted no-underline transition-colors hover:text-white ${
+                  (item.href.startsWith("/#") ? activeSection === item.href.slice(2) : location.pathname === item.href) ? "!text-white" : ""
+                }`}
               >
                 {item.label}
               </Link>
             </li>
           ))}
-          <li>
-            <a
-              href={githubProfile}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-primary !min-h-8 !px-3 !py-1 !text-[12px] !leading-none !tracking-[-0.12px]"
-            >
-              Contact
-            </a>
-          </li>
         </ul>
       </nav>
       {open ? (
-        <ul id="mobile-nav" className="glass-nav border-t border-white/50 px-5 py-2 min-[834px]:hidden">
-          {navItems.map((item) => (
-            <li key={item.label}>
+        <ul id="mobile-nav" className="glass-nav flex h-[calc(100dvh-3.5rem)] flex-col justify-center border-t border-white/10 px-8 min-[834px]:hidden">
+          {navItems.map((item, index) => (
+            <li key={item.label} style={{ animationDelay: `${index * 60}ms` }}>
               <Link
                 to={item.href}
-                className="flex h-11 items-center text-[17px] tracking-[-0.374px] text-ink no-underline"
+                className="flex min-h-16 items-center border-b border-white/10 text-[clamp(28px,8vw,44px)] font-semibold tracking-[-.04em] text-ink no-underline"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
               </Link>
             </li>
           ))}
-          <li>
-            <a
-              href={githubProfile}
-              target="_blank"
-              rel="noreferrer"
-              className="flex h-11 items-center text-[17px] tracking-[-0.374px] text-action no-underline"
-            >
-              Contact
-            </a>
-          </li>
         </ul>
       ) : null}
     </header>
