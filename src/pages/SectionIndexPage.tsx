@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Button } from "../components/Button";
 import { CountUp } from "../components/CountUp";
 import { PageShell } from "../components/PageShell";
@@ -29,6 +29,9 @@ export function SectionIndexPage({
       <section className="section-pad pt-[clamp(130px,16vw,220px)]">
         <div className="container-content">
           <Reveal>
+            <Link to="/" className="text-link mb-10 inline-flex items-center gap-2 text-[14px]">
+              <ArrowLeft size={15} aria-hidden="true" /> Home
+            </Link>
             <p className="text-[12px] font-medium uppercase tracking-[.17em] text-action">Selected work</p>
             <h1 className="mt-5 font-display text-[clamp(52px,9vw,112px)] font-semibold leading-[.92] tracking-[-.065em] text-ink">{title}</h1>
             <p className="mt-8 max-w-[660px] text-[clamp(19px,2.4vw,28px)] leading-[1.35] text-muted">{intro}</p>

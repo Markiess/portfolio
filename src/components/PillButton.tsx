@@ -5,12 +5,13 @@ type PillButtonProps = {
   to: string;
   label: string;
   size?: "md" | "lg";
+  solid?: boolean;
   onClick?: () => void;
 };
 
-export function PillButton({ to, label, size = "md", onClick }: PillButtonProps) {
+export function PillButton({ to, label, size = "md", solid = false, onClick }: PillButtonProps) {
   const large = size === "lg";
-  const className = `pill-link${large ? " pill-link-lg" : ""}`;
+  const className = `pill-link${large ? " pill-link-lg" : ""}${solid ? " pill-link-solid" : ""}`;
   const content = (
     <>
       <span className={`pill-icon flex items-center justify-center rounded-full border border-white/35 ${large ? "h-7 w-7" : "h-5 w-5"}`}>

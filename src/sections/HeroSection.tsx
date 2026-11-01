@@ -63,9 +63,9 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        <motion.div style={{ opacity: fade }} className="absolute inset-x-5 bottom-16 z-20 flex flex-col items-center gap-2 min-[834px]:hidden">
+        <motion.div style={{ opacity: fade }} className="absolute inset-x-5 bottom-16 z-20 flex flex-col items-center gap-3.5 min-[834px]:hidden">
           {heroEntries.map((entry) => (
-            <PillButton key={entry.to} to={entry.to} label={entry.label} />
+            <PillButton key={entry.to} to={entry.to} label={entry.label} size="lg" solid />
           ))}
         </motion.div>
 

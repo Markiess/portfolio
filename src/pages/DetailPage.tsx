@@ -52,9 +52,13 @@ export function DetailPage({ section }: { section: "research" | "products" }) {
       <article>
         <header className="section-pad pb-16 pt-[clamp(130px,16vw,210px)]">
           <div className="container-content">
-            <Link to={detail.backTo} className="text-link inline-flex items-center gap-2 text-[14px]">
-              <ArrowLeft size={15} /> {detail.backLabel}
-            </Link>
+            <div className="flex items-center gap-3 text-[14px]">
+              <Link to="/" className="text-link inline-flex items-center gap-2">
+                <ArrowLeft size={15} aria-hidden="true" /> Home
+              </Link>
+              <span className="text-quiet" aria-hidden="true">/</span>
+              <Link to={detail.backTo} className="text-link">{detail.backLabel}</Link>
+            </div>
             <p className="mt-12 text-[12px] font-medium uppercase tracking-[.13em] text-quiet">{detail.kicker}</p>
             <h1 className="mt-5 max-w-[960px] font-display text-[clamp(38px,6.3vw,78px)] font-semibold leading-[1.02] tracking-[-.055em]">{detail.title}</h1>
             <p className="mt-7 max-w-[720px] text-[16px] leading-[1.6] text-muted">{detail.authors}</p>
