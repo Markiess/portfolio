@@ -4,22 +4,25 @@ import { Link } from "react-router-dom";
 type PillButtonProps = {
   to: string;
   label: string;
+  size?: "md" | "lg";
   onClick?: () => void;
 };
 
-export function PillButton({ to, label, onClick }: PillButtonProps) {
+export function PillButton({ to, label, size = "md", onClick }: PillButtonProps) {
+  const large = size === "lg";
+  const className = `pill-link${large ? " pill-link-lg" : ""}`;
   const content = (
     <>
-      <span className="pill-icon flex h-5 w-5 items-center justify-center rounded-full border border-white/35">
-        <Plus size={12} aria-hidden="true" />
+      <span className={`pill-icon flex items-center justify-center rounded-full border border-white/35 ${large ? "h-7 w-7" : "h-5 w-5"}`}>
+        <Plus size={large ? 16 : 12} aria-hidden="true" />
       </span>
       <span>{label}</span>
     </>
   );
 
   return to.startsWith("#") ? (
-    <a href={to} className="pill-link" onClick={onClick}>{content}</a>
+    <a href={to} className={className} onClick={onClick}>{content}</a>
   ) : (
-    <Link to={to} className="pill-link" onClick={onClick}>{content}</Link>
+    <Link to={to} className={className} onClick={onClick}>{content}</Link>
   );
 }

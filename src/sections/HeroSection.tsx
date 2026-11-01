@@ -42,11 +42,11 @@ export function HeroSection() {
         <motion.nav
           aria-label="Featured sections"
           style={{ opacity: fade }}
-          className="absolute left-6 top-1/2 hidden -translate-y-1/2 flex-col gap-3 min-[834px]:flex min-[1100px]:left-10"
+          className="absolute bottom-14 left-6 hidden flex-col gap-4 min-[834px]:flex min-[1100px]:left-10"
         >
           {heroEntries.map((entry) => (
             <Magnet key={entry.to} padding={45} strength={8}>
-              <PillButton to={entry.to} label={entry.label} />
+              <PillButton to={entry.to} label={entry.label} size="lg" />
             </Magnet>
           ))}
         </motion.nav>
@@ -63,7 +63,7 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        <motion.div style={{ opacity: fade }} className="absolute inset-x-5 bottom-8 z-20 flex flex-col items-center gap-2 min-[834px]:hidden">
+        <motion.div style={{ opacity: fade }} className="absolute inset-x-5 bottom-16 z-20 flex flex-col items-center gap-2 min-[834px]:hidden">
           {heroEntries.map((entry) => (
             <PillButton key={entry.to} to={entry.to} label={entry.label} />
           ))}

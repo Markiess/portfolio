@@ -119,6 +119,12 @@
     transition: background .35s var(--ease-apple), transform .35s var(--ease-apple), border-color .35s var(--ease-apple);
   }
   .pill-link:hover { background: rgba(255,255,255,.17); border-color: rgba(255,255,255,.2); transform: translateX(5px); }
+  .pill-link-lg {
+    min-width: 200px;
+    gap: 14px;
+    padding: 14px 24px 14px 14px;
+    font-size: 18px;
+  }
   .pill-link .pill-icon { transition: transform .45s var(--ease-apple); }
   .pill-link:hover .pill-icon { transform: rotate(90deg); }
   .spotlight-card {
